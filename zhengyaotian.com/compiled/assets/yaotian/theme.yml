@@ -1,0 +1,23 @@
+{
+  "stylesheets" : {
+    "default" : [
+      "style.css"
+    ],
+   
+    "widgets" : {
+      "google_prettify" : "twitter-bootstrap.css"
+    }
+    
+  },
+
+  "javascripts" : {
+    "default" : [
+       "jquery.min.js"
+    ]
+  },
+  
+  "manifest" : {
+    "author" : "Zheng Yaotian",
+    "website" : "http://zhengyaotian.com"
+  }
+}

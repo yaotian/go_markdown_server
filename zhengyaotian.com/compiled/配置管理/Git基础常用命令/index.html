@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git基础常用命令</title>
+  
+    <meta name="author" content="Yaotian Zheng">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/yaotian/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<script src="/assets/yaotian/javascripts/jquery.min.js"></script>
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="left-col">
+
+        <div class="intrude-less">
+          <header id="header" class="inner">
+            <div class="profilepic">	
+              <script src="static/themes/default/js/md5.js"></script>
+              <script type="text/javascript">
+                document.write("<img src='/assets/yaotian/img/my.jpeg' alt='Profile Picture' style='width: 160px;' />");
+              </script>
+            </div>
+            <h1><a href="/">Zheng Yaotian</a></h1>
+            <p class="subtitle">Zheng Yaotian个人博客,转载请注明出处</p>
+            <nav id="main-nav">
+              <ul class="main-navigation">
+                <li><a href="/">Blog</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/archive/">Archives</a></li>
+              </ul>
+            </nav>
+            <nav id="sub-nav">
+              <div class="social">
+                <a class="weibo" href="http://www.weibo.com/yaotian" title="Weibo">Weibo</a>
+                <a class="facebook" href="https://www.facebook.com/zheng.yaotian" title="Facebook">Facebook</a>
+                <a class="twitter" href="https://twitter.com/zhengyaotian" title="Twitter">Twitter</a>
+                <a class="github" href="https://github.com/yaotian" title="GitHub">GitHub</a>
+                <a class="rss" href="/rss.xml" title="rss">RSS</a>
+              </div>
+            </nav>
+
+          </header>				
+        </div>
+
+      </div>
+
+
+      <div class="mid-col">
+
+        <div class="mid-col-container">
+          <div id="content" class="inner">
+            <div itemscope itemtype="http://schema.org/Blog">
+              
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <h1 class="title" itemprop="name">Git基础常用命令</h1>
+	<div class="entry-content" itemprop="articleBody">
+    <p>掌握本文中的常用命令，基本上可以覆盖80%的Git日常使用</p>
+
+<h2><a style="display: block;" name="创建版本库" href="#创建版本库"></a>创建版本库</h2>
+
+<p>以下命令可以创建版本库</p>
+
+<pre><code>mkdir dir
+cd dir
+git init
+
+git config --global user.name  &quot;yaotian&quot;
+git config --global user.email  &quot;yaotian@gmail.com&quot;
+</code></pre>
+
+<h2><a style="display: block;" name="加remote-repository" href="#加remote-repository"></a>加remote repository</h2>
+
+<pre><code>git remote add origin git@github.com:yaotian/doc.git # 设置仓库
+</code></pre>
+
+<p>&ldquo;origin&rdquo;为远程repository的alias,在后面的命令中表示将表示这个远程的repository.</p>
+
+<p><strong>Note</strong>:<br />
+如果因为种种原因不能用git协议，而只能用https的话，这样带来一个问题，每次都需要输入用户名和密码，太麻烦了,解决办法如下</p>
+
+<p>删除掉原来的remote的alias</p>
+
+<pre><code>git remote rm origin    
+</code></pre>
+
+<p>增加新的</p>
+
+<pre><code>git remote add origin https://{your name}:{you passwd}@github.com/yaotian/doc.git
+</code></pre>
+
+<h2><a style="display: block;" name="查看当前有哪些remote-alias" href="#查看当前有哪些remote-alias"></a>查看当前有哪些remote alias</h2>
+
+<pre><code>$ git remote -v
+origin  git@github.com:yaotian/doc.git (fetch)
+origin  git@github.com:yaotian/doc.git (push)
+</code></pre>
+
+<h2><a style="display: block;" name="查看目前所处的branch分支" href="#查看目前所处的branch分支"></a>查看目前所处的branch分支</h2>
+
+<pre><code>$ git branch
+* master
+</code></pre>
+
+<p>*表示当前的分支</p>
+
+<h2><a style="display: block;" name="提交代码" href="#提交代码"></a>提交代码</h2>
+
+<pre><code>touch README
+git add . # 将当前目录添加到 git 仓库中， 使用 git add -A 则是添加所有改动的文档
+git commit -m &quot;Initial commit&quot;    
+
+git commit -a  # 这个动作提交所有加入到本地仓库中的文件，对没有加入到本地仓库中的文件不生效。git add {文件}可以加入文件
+</code></pre>
+
+<h2><a style="display: block;" name="取消提交" href="#取消提交"></a>取消提交</h2>
+
+<p>如果发现有个文件提交错了，想从remote的仓库中删除，但还保留本地的话，可以采用以下命令</p>
+
+<pre><code>git rm --cached {your file}
+</code></pre>
+
+<h2><a style="display: block;" name="把当前分支的代码提交到远程repository" href="#把当前分支的代码提交到远程repository"></a>把当前分支的代码提交到远程repository</h2>
+
+<pre><code>$ git push origin master
+</code></pre>
+
+<p>将本地的branch “master” 提交到远程repository &ldquo;origin&rdquo;</p>
+
+<h3>Note:</h3>
+
+<p>当git push的时候会出现这个问题</p>
+
+<pre><code>! [rejected]        master -&gt; master (non-fast-forward)
+error: failed to push some refs to 'git@github.com:yaotian/doc.git'
+To prevent you from losing history, non-fast-forward updates were rejected
+Merge the remote changes (e.g. 'git pull') before pushing again.  See the
+'Note about fast-forwards' section of 'git push --help' for details.
+</code></pre>
+
+<p>解决办法是</p>
+
+<pre><code>git fetch origin;git merge origin/master
+</code></pre>
+
+<h2><a style="display: block;" name="分支相关操作" href="#分支相关操作"></a>分支相关操作</h2>
+
+<h3>如何创建分支</h3>
+
+<pre><code>$ git branch test
+$ git branch
+* master
+test
+</code></pre>
+
+<h3>进入某个分支</h3>
+
+<pre><code>$ git checkout test
+$ git branch
+  master
+* test
+</code></pre>
+
+<h3>merge分支</h3>
+
+<pre><code>$ git branch
+  master
+* test
+
+$ git checkout master
+$ git branch
+* master
+  test
+
+git merge test
+</code></pre>
+
+<h2><a style="display: block;" name="sublime中git插件的常用命令" href="#sublime中git插件的常用命令"></a>sublime中git插件的常用命令</h2>
+
+<pre><code>ctrl+shift+p
+git add Current file
+git quick commit
+git push current branch
+</code></pre>
+
+<h2><a style="display: block;" name="git-subcomponent" href="#git-subcomponent"></a>git subcomponent</h2>
+
+<pre><code>git submodule add  ssh://eyaotzh@gerritforge.lmera.ericsson.se:29418/sea-ui sea-ui
+
+if got error &quot;fatal: You are on a branch yet to be born&quot;, rm &quot;.git/component/&lt;your subcomponent&gt;
+</code></pre>
+
+<hr />
+
+<h2><a style="display: block;" name="参考" href="#参考"></a>参考</h2>
+
+<p><a href="http://git-scm.com/book/zh">Pro git 中文版</a></p>
+
+	</div>
+</article>
+<section id="comment">
+    
+<div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'zhengyaotian'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+            </div>
+             <nav id="pagenavi">
+               <div class="center"><a href="/archive/">Blog Archives</a></div>
+             </nav>
+ 
+          </div>
+        </div>
+
+
+        <footer id="footer" class="inner">
+          <p>Copyright &copy; 2012-2014 - <a href="index.html" title="Zheng Yaotian">Zheng Yaotian</a> - <span class="credit">Powered by <a href="http://www.golang.org">Golang</a></span></p>
+          友情链接: <a href="http://hongbinzuo.github.io/"><u>左洪斌博客</u></a>  <a href="http://bobjiang.com/"><u>Bob Jiang Blog</u></a>
+        </footer>
+        <script src="static/themes/default/js/slash.js"></script>
+      </div>
+
+    </div>
+
+    <div style="display:none">
+      <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1dd58258adc35728a56629def5cbb20' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+    </div>
+  </body>
+</html>

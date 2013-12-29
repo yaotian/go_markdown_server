@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oozie使用</title>
+  
+    <meta name="author" content="Yaotian Zheng">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/yaotian/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<script src="/assets/yaotian/javascripts/jquery.min.js"></script>
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="left-col">
+
+        <div class="intrude-less">
+          <header id="header" class="inner">
+            <div class="profilepic">	
+              <script src="static/themes/default/js/md5.js"></script>
+              <script type="text/javascript">
+                document.write("<img src='/assets/yaotian/img/my.jpeg' alt='Profile Picture' style='width: 160px;' />");
+              </script>
+            </div>
+            <h1><a href="/">Zheng Yaotian</a></h1>
+            <p class="subtitle">Zheng Yaotian个人博客,转载请注明出处</p>
+            <nav id="main-nav">
+              <ul class="main-navigation">
+                <li><a href="/">Blog</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/archive/">Archives</a></li>
+              </ul>
+            </nav>
+            <nav id="sub-nav">
+              <div class="social">
+                <a class="weibo" href="http://www.weibo.com/yaotian" title="Weibo">Weibo</a>
+                <a class="facebook" href="https://www.facebook.com/zheng.yaotian" title="Facebook">Facebook</a>
+                <a class="twitter" href="https://twitter.com/zhengyaotian" title="Twitter">Twitter</a>
+                <a class="github" href="https://github.com/yaotian" title="GitHub">GitHub</a>
+                <a class="rss" href="/rss.xml" title="rss">RSS</a>
+              </div>
+            </nav>
+
+          </header>				
+        </div>
+
+      </div>
+
+
+      <div class="mid-col">
+
+        <div class="mid-col-container">
+          <div id="content" class="inner">
+            <div itemscope itemtype="http://schema.org/Blog">
+              
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <h1 class="title" itemprop="name">Oozie使用</h1>
+	<div class="entry-content" itemprop="articleBody">
+    <p>(口号：&rdquo;简单，易懂，直接，浓缩, 趣味&rdquo;， 痛恨一些技术文档，将一些简单的问题，非要用一些晦涩难懂的语言来描述，或者非要用一些专用语言或缩写，以显得比较专业，却忘记了文档本身的目的是为了更好的让别人理解。</p>
+
+<p>就目前对Oozie的了解，Oozie就像一个快递中心，将任务分发给不同的业务人员去，同时还可以查看这些任务的状态<br />
+这里的业务人员就是一个个的Hadoop平台</p>
+
+<p>使用到的软件</p>
+
+<ul>
+<li>hadoop 0.20.205.0</li>
+<li>oozie  3.2.0</li>
+<li>extjs  2.2</li>
+<li>maven  3.0.4</li>
+</ul>
+
+<h2><a style="display: block;" name="下载及编译" href="#下载及编译"></a>下载及编译</h2>
+
+<pre><code>wget http://mirrors.gigenet.com/apache/incubator/oozie/stable/oozie-3.2.0-incubating.tar.gz
+</code></pre>
+
+<p>悲催的是java写的东东居然还需要下载下来编译， 所以需要有maven3的环境</p>
+
+<p>配置maven3很简单，下载zip包后解压到某目录下，然后配置两个环境变量</p>
+
+<pre><code>export M3_HOME={you maven folder}
+export Path=$Path:$M3_HOME/bin
+</code></pre>
+
+<p>到{Oozie home}/bin目录下运行</p>
+
+<pre><code>mkdistro.sh
+</code></pre>
+
+<p>如果失败的话，从失败的地方重新运行可以用命令：</p>
+
+<pre><code>mkdistro.sh -ff
+</code></pre>
+
+<p><strong><em>Note:</em></strong> 用mvn package 只生成每个component的target目录下的东东，不会在distro目录下生成最终的完整oozie（这点比较悲催）</p>
+
+<h2><a style="display: block;" name="安装" href="#安装"></a>安装</h2>
+
+<p>简单，直接将distro目录下的东东拷贝到你的生产路径下就可以了</p>
+
+<h2><a style="display: block;" name="配置" href="#配置"></a>配置</h2>
+
+<h3>配置Hadoop</h3>
+
+<p>{hadoop home}/conf/core-site.xml 加入以下内容</p>
+
+<pre><code>&lt;property&gt;
+  &lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;
+  &lt;value&gt;{your server}&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;
+  &lt;value&gt;hadoop&lt;/value&gt;
+&lt;/property&gt;
+</code></pre>
+
+<p><strong><em>Note:</em></strong>此处的value为运行job所在的机器名和hadoop所在的group名。不能用*<br />
+这个步骤配置不对的话， 会出现&rdquo;hadoop is not allowed to impersonate hadoop&rdquo;问题</p>
+
+<p>别忘记copy配置文件到slave, 重启启动Hadoop</p>
+
+<h3>修改及配置Oozie</h3>
+
+<h4>修改{OOZIE_HOME}/conf/oozie-site.xml</h4>
+
+<pre><code>&lt;property&gt;
+    &lt;name&gt;oozie.services.ext&lt;/name&gt;
+    &lt;value&gt;
+        org.apache.oozie.service.HadoopAccessorService
+    &lt;/value&gt;
+    &lt;description&gt;
+    To add/replace services defined in 'oozie.services' with custom implementations.Class names must be separated by commas.
+    &lt;/description&gt;
+&lt;/property&gt;
+</code></pre>
+
+<p>如果你暂时不配置数据库的话，需要让Oozie自动创建数据库，所以要修改下面内容：将false改为true</p>
+
+<pre><code>    &lt;property&gt;
+        &lt;name&gt;oozie.service.JPAService.create.db.schema&lt;/name&gt;
+        &lt;value&gt;true&lt;/value&gt;
+        &lt;description&gt;
+            Creates Oozie DB.
+
+            If set to true, it creates the DB schema if it does not exist. If the DB schema exists is a NOP.
+            If set to false, it does not create the DB schema. If the DB schema does not exist it fails start up.
+        &lt;/description&gt;
+    &lt;/property&gt;
+</code></pre>
+
+<p>否则你会遇到以下问题</p>
+
+<pre><code>Caused by: org.apache.openjpa.lib.jdbc.ReportingSQLException: Schema 'SA' does not exist
+</code></pre>
+
+<h4>修改{OOZIE_HOME}/conf/oozie-env.sh</h4>
+
+<pre><code>export OOZIE_HTTP_HOSTNAME={your host}
+export OOZIE_HTTP_PORT={your Oozie port}
+</code></pre>
+
+<h4>Setup Oozie</h4>
+
+<pre><code>{OOZIE_HOME}/bin/oozie-setup.sh -hadoop 0.20.200 {HADOOP_HOME} -extjs {/PATH/TO}/ext-2.2.zip
+</code></pre>
+
+<h3>启动Oozie</h3>
+
+<pre><code>$ {OOZIE_HOME}/bin/oozie-start.sh
+</code></pre>
+
+<p>当然第一次启动你希望看看启动的时候的一些信息， 你可以用</p>
+
+<pre><code>$ {OOZIE_HOME}/bin/oozie-run.sh 
+</code></pre>
+
+<p>这个时候您应该可以访问 http://{your host}:9010 访问oozie的页面
+恭喜您，可以使用了。</p>
+
+<h2><a style="display: block;" name="使用oozie" href="#使用oozie"></a>使用Oozie</h2>
+
+<p>上面花了这么长的时间搞出来，现在是享受成果的时间</p>
+
+<h3>运行map-reduce</h3>
+
+<p>将您的任务代码拷贝到oozie的目录下，建议的目录结构为</p>
+
+<pre><code>app    
+  --lib    
+    --your jar file   
+  --job.properties    
+  --workflow.xml   
+</code></pre>
+
+<h4>job.properties</h4>
+
+<h4>workflow.xml</h4>
+
+<h2><a style="display: block;" name="参考" href="#参考"></a>参考</h2>
+
+<p><a href="http://incubator.apache.org/oozie/map-reduce-cookbook.html">map-reduce in oozie</a></p>
+
+	</div>
+</article>
+<section id="comment">
+    
+<div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'zhengyaotian'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+            </div>
+             <nav id="pagenavi">
+               <div class="center"><a href="/archive/">Blog Archives</a></div>
+             </nav>
+ 
+          </div>
+        </div>
+
+
+        <footer id="footer" class="inner">
+          <p>Copyright &copy; 2012-2014 - <a href="index.html" title="Zheng Yaotian">Zheng Yaotian</a> - <span class="credit">Powered by <a href="http://www.golang.org">Golang</a></span></p>
+          友情链接: <a href="http://hongbinzuo.github.io/"><u>左洪斌博客</u></a>  <a href="http://bobjiang.com/"><u>Bob Jiang Blog</u></a>
+        </footer>
+        <script src="static/themes/default/js/slash.js"></script>
+      </div>
+
+    </div>
+
+    <div style="display:none">
+      <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1dd58258adc35728a56629def5cbb20' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+    </div>
+  </body>
+</html>

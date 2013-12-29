@@ -1,0 +1,16 @@
+title : Zheng Yaotian
+tagline: Blog Tagline
+author :
+  name : Yaotian Zheng
+  email : yaotian@gmail.com
+  github : yaotian
+  twitter : zhengyaotian
+  feedburner : feedname
+
+navigation :
+  - archive.html
+  - tags.html
+  - categories.html
+  - pages.html
+  - about.md
+  

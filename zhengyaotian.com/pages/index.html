@@ -1,0 +1,31 @@
+---
+title: Zheng Yaotian个人博客- 学习,写作,分享,快乐,编程
+description: Zheng Yaotian的个人博客，关注开发语言，架构，大数据，软件工程，流数据，数据挖掘，分布式计算
+---
+
+
+{{# posts_latest }}
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="{{ date }}" data-updated="true" itemprop="datePublished">{{ date }}</time>
+    </div>
+    <div class="tags">
+      
+      {{# tags?to_tags }}
+      {{> tags_post }}
+      {{/ tags?to_tags }}
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="{{url}}" itemprop="url">{{title}}</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    {{{ summary }}}
+  </div>
+  <div class="more">
+    <a href="{{url}}" class="btn">[Read more...] </a>
+  </div>
+</article>
+{{/ posts_latest }}

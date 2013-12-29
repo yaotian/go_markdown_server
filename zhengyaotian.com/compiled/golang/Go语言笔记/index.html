@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go语言笔记</title>
+  
+    <meta name="author" content="Yaotian Zheng">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/yaotian/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<script src="/assets/yaotian/javascripts/jquery.min.js"></script>
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="left-col">
+
+        <div class="intrude-less">
+          <header id="header" class="inner">
+            <div class="profilepic">	
+              <script src="static/themes/default/js/md5.js"></script>
+              <script type="text/javascript">
+                document.write("<img src='/assets/yaotian/img/my.jpeg' alt='Profile Picture' style='width: 160px;' />");
+              </script>
+            </div>
+            <h1><a href="/">Zheng Yaotian</a></h1>
+            <p class="subtitle">Zheng Yaotian个人博客,转载请注明出处</p>
+            <nav id="main-nav">
+              <ul class="main-navigation">
+                <li><a href="/">Blog</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/archive/">Archives</a></li>
+              </ul>
+            </nav>
+            <nav id="sub-nav">
+              <div class="social">
+                <a class="weibo" href="http://www.weibo.com/yaotian" title="Weibo">Weibo</a>
+                <a class="facebook" href="https://www.facebook.com/zheng.yaotian" title="Facebook">Facebook</a>
+                <a class="twitter" href="https://twitter.com/zhengyaotian" title="Twitter">Twitter</a>
+                <a class="github" href="https://github.com/yaotian" title="GitHub">GitHub</a>
+                <a class="rss" href="/rss.xml" title="rss">RSS</a>
+              </div>
+            </nav>
+
+          </header>				
+        </div>
+
+      </div>
+
+
+      <div class="mid-col">
+
+        <div class="mid-col-container">
+          <div id="content" class="inner">
+            <div itemscope itemtype="http://schema.org/Blog">
+              
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <h1 class="title" itemprop="name">Go语言笔记</h1>
+	<div class="entry-content" itemprop="articleBody">
+    <h1><a style="display: block;" name="go语言笔记" href="#go语言笔记"></a>Go语言笔记</h1>
+
+<h2><a style="display: block;" name="在window下部署开发环境" href="#在window下部署开发环境"></a>在window下部署开发环境</h2>
+
+<p>1.install go (??)<br />
+2.编辑器，可以用vim,也可以用sublime<br />
+3.安装 gocode</p>
+
+<pre><code>go get github.com/nsf/gocode
+go install github.com/nsf/gocode
+</code></pre>
+
+<p>Note: 用proxy的话在环境中设置http_proxy 和https_proxy</p>
+
+<h2><a style="display: block;" name="指针" href="#指针"></a>指针</h2>
+
+<p>有指针， 但没有指针运算</p>
+
+<p>用法 new * &amp;</p>
+
+<p>go语言的指针，基本上只剩下用于区分 byref 和 byval 语义。多数人对指针都比较恐惧，其实是非常简单的东西，很多语言都有的。
+做个类比的话，指针相当于 the,表示locate到这个特定位置，a的话就byVal值传递了。
+go的method很体现这个问题
+func (p *T) DoSomething() 就指向一个特定的*T as Receiver
+func (p T) DoSomething() 就只指向一个类型T，不能够改变特定的T的值。</p>
+
+<p>因为没有了指针运算，包括数组都脱离了指针，所以，go里面的指针仅仅作为传递引用byRef的作用了。</p>
+
+<p>&amp; 表示指针地址
+* 表示指针指向的值</p>
+
+<p>例子</p>
+
+<pre><code>    package main
+
+    import &quot;fmt&quot;
+
+    func main() {
+        var p *int     //定义一个指针
+        fmt.Println(p)  //所有新定义的变量都被赋值为其类型的零值
+
+        var i int = 9
+        var p_i = &amp;i    //获得指针的地址
+
+        fmt.Println(p_i) 
+
+        fmt.Println(*p_i) //获得指针指向的值
+    }
+
+</code></pre>
+
+<h3>new and make区别</h3>
+
+<p>1.new 分配内存，直接返回指针，意味着使用者可以用new 创建一个数据结构的实例并且可以直接工作</p>
+
+<pre><code>    type SyncedBuffer struct {
+    lock sync.Mutex
+    buffer bytes.Buffer
+    }
+    
+    SyncedBuffer 的值在分配内存或定义之后立刻就可以使用。在这个片段中，p和v都可以在没有任何更进一步处理的情况下工作。
+
+    p := new(SyncedBuffer)  
+    Type *SyncedBuffer，已经可以使用
+
+    var v SyncedBuffer   Type SyncedBuffer，同上
+</code></pre>
+
+<p>2.make</p>
+
+<p>只能创建slice，map 和channel，并且返回一个有初始值（非零）的T 类型，而不是*T。</p>
+
+<p>本质来讲，导致这三个类型有所不同的原因是指向数据结构的引用在使用前必须被初始化。例如，一个slice，是一个包含指向数据（内部array）的指针，
+长度和容量的三项描述符；在这些项目被初始化之前，slice 为nil。对于slice，map 和channel， make 初始化了内部的数据结构，填充适当的值</p>
+
+<p>3.总结</p>
+
+<p>new(T) 返回*T 指向一个零值T
+make(T) 返回初始化后的T (仅用于slice, map and channel)</p>
+
+<h2><a style="display: block;" name="模板的使用" href="#模板的使用"></a>模板的使用</h2>
+
+<p>需要包 &ldquo;html/template&rdquo;</p>
+
+<h2><a style="display: block;" name="文件操作" href="#文件操作"></a>文件操作</h2>
+
+<h3>文件读取</h3>
+
+<h4>整个文件读取</h4>
+
+<pre><code>package main
+
+import &quot;os&quot;
+
+func main() {
+    buf := make([]byte, 1024)
+    f, _ := os.Open(&quot;test.md&quot;) //打开文件，os.Open 返回一个实现了io.Reader 和io.Writer 的*os.File；
+    defer f.Close()
+    for {
+        n, _ := f.Read(buf) //一次读取1024字节
+        if n == 0 {
+            break
+        }
+        os.Stdout.Write(buf[:n])
+    }
+}
+</code></pre>
+
+<h4>一行一行的读取</h4>
+
+<h2><a style="display: block;" name="系统命令" href="#系统命令"></a>系统命令</h2>
+
+<pre><code>&quot;os/exec&quot;
+
+cmd := exec.Command(&quot;history&quot;)
+fmt.Println(cmd.Output())
+</code></pre>
+
+<h2><a style="display: block;" name="并发" href="#并发"></a>并发</h2>
+
+<p>channel和goroutine开发并行程序</p>
+
+<h3>goroutine</h3>
+
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func ready(w string, sec int) { 
+    time.Sleep(time.Duration(sec) * time.Second)
+    fmt.Println(w,&quot;is ready&quot;)
+
+}
+
+func main() {
+    go ready(&quot;Tea&quot;, 1)
+    go ready(&quot;Coffee&quot;, 15)  
+    fmt.Println(&quot;I'm waiting&quot;)
+    time.Sleep(5 * time.Second)   // Coffee 不会出现，因为这里只等了5秒，程序退出，所有的goroutine都会退出
+    fmt.Println(&quot;completed!&quot;)
+}
+
+</code></pre>
+
+<h3>channel</h3>
+
+<p>goroutine之间的通信通过channel</p>
+
+<p>必须使用make来创建channel</p>
+
+<pre><code>ci := make(chan int)
+cs := make(chan string)
+cf := make(chan interface{})
+
+
+
+ci &lt;- 1   发送整数1 到channel ci
+&lt;-ci   从channel ci 接收整数
+i := &lt;-ci   从channel ci 接收整数，并保存到i 中
+</code></pre>
+
+<p>虽然goroutine 是并发执行的，但是它们并不是并行运行的。如果不告诉Go 额外的东西，同一时刻只会有一个goroutine 执行。利用runtime.GOMAXPROCS(n) 可以设置goroutine 并行执行的数量。</p>
+
+<p>对每一个goroutine都要读其输入。可以用简单的方法 for + select来实现</p>
+
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;time&quot;
+    &quot;runtime&quot;
+)
+
+var c chan int
+
+func ready(w string, sec int) { 
+    time.Sleep(time.Duration(sec) * time.Second)
+    fmt.Println(w,&quot;is ready&quot;)
+    c&lt;-1
+}
+
+func main() {
+    runtime.GOMAXPROCS(2)  //因为有两个cpu
+    c = make(chan int)  
+    go ready(&quot;Tea&quot;, 1)
+    go ready(&quot;Coffee&quot;, 15)  
+    fmt.Println(&quot;I'm waiting&quot;)
+    time.Sleep(5 * time.Second)   // Coffee 不会出现，因为这里只等了5秒，程序退出，所有的goroutine都会退出
+
+    var i int = 0
+    L:  for{
+        select {
+        case &lt;-c:
+            i++
+            if i&gt;1{
+                break L
+            }
+        }
+    }
+    fmt.Println(&quot;completed!&quot;)
+}
+
+</code></pre>
+
+<p>当在Go 中用ch := make(chan bool) 创建chennel 时，bool 型的无缓冲channel 会被创建。这对于程序来说意味着什么呢？首先，如果读取（value := &lt;-ch）它将会被阻塞，直到有数据接收。其次，任何发送（ch&lt;-5）将会被阻塞，直到数据被读出。无缓冲channel 是在多个goroutine 之间同步很棒的工具。</p>
+
+<p>ch := make(chan bool, 4)，创建了可以存储4 个元素的bool 型channel。</p>
+
+<p>x, ok = &lt;-ch<br />
+当ok 被赋值为true 意味着channel 尚未被关闭，同时可以读取数据。否则ok 被赋值为false。在这个情况下表示channel 被关闭。</p>
+
+<p></p>
+
+<h2><a style="display: block;" name="正则表达式" href="#正则表达式"></a>正则表达式</h2>
+
+<p>让正则表达式能处理多行</p>
+
+<pre><code>在正则表达式前加(?s)   
+比如：(?s)&lt;head&gt;(.*?)&lt;/head&gt;  取出head之间的内容
+</code></pre>
+
+<p>吐槽：这个在文档中没有描述</p>
+
+	</div>
+</article>
+<section id="comment">
+    
+<div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'zhengyaotian'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+            </div>
+             <nav id="pagenavi">
+               <div class="center"><a href="/archive/">Blog Archives</a></div>
+             </nav>
+ 
+          </div>
+        </div>
+
+
+        <footer id="footer" class="inner">
+          <p>Copyright &copy; 2012-2014 - <a href="index.html" title="Zheng Yaotian">Zheng Yaotian</a> - <span class="credit">Powered by <a href="http://www.golang.org">Golang</a></span></p>
+          友情链接: <a href="http://hongbinzuo.github.io/"><u>左洪斌博客</u></a>  <a href="http://bobjiang.com/"><u>Bob Jiang Blog</u></a>
+        </footer>
+        <script src="static/themes/default/js/slash.js"></script>
+      </div>
+
+    </div>
+
+    <div style="display:none">
+      <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1dd58258adc35728a56629def5cbb20' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+    </div>
+  </body>
+</html>

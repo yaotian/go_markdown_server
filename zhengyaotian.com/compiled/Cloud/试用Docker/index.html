@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>试用Docker</title>
+  
+    <meta name="author" content="Yaotian Zheng">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/yaotian/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<script src="/assets/yaotian/javascripts/jquery.min.js"></script>
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="left-col">
+
+        <div class="intrude-less">
+          <header id="header" class="inner">
+            <div class="profilepic">	
+              <script src="static/themes/default/js/md5.js"></script>
+              <script type="text/javascript">
+                document.write("<img src='/assets/yaotian/img/my.jpeg' alt='Profile Picture' style='width: 160px;' />");
+              </script>
+            </div>
+            <h1><a href="/">Zheng Yaotian</a></h1>
+            <p class="subtitle">Zheng Yaotian个人博客,转载请注明出处</p>
+            <nav id="main-nav">
+              <ul class="main-navigation">
+                <li><a href="/">Blog</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/archive/">Archives</a></li>
+              </ul>
+            </nav>
+            <nav id="sub-nav">
+              <div class="social">
+                <a class="weibo" href="http://www.weibo.com/yaotian" title="Weibo">Weibo</a>
+                <a class="facebook" href="https://www.facebook.com/zheng.yaotian" title="Facebook">Facebook</a>
+                <a class="twitter" href="https://twitter.com/zhengyaotian" title="Twitter">Twitter</a>
+                <a class="github" href="https://github.com/yaotian" title="GitHub">GitHub</a>
+                <a class="rss" href="/rss.xml" title="rss">RSS</a>
+              </div>
+            </nav>
+
+          </header>				
+        </div>
+
+      </div>
+
+
+      <div class="mid-col">
+
+        <div class="mid-col-container">
+          <div id="content" class="inner">
+            <div itemscope itemtype="http://schema.org/Blog">
+              
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <h1 class="title" itemprop="name">试用Docker</h1>
+	<div class="entry-content" itemprop="articleBody">
+    <p>目前版本0.7</p>
+
+<p>支持Ubuntu, 一定要装64位的，否则装不上docker，目前不支持</p>
+
+<p><a href="http://docs.docker.io/en/latest/installation/ubuntulinux/">http://docs.docker.io/en/latest/installation/ubuntulinux/</a></p>
+
+<p>##在Ubuntu上安装</p>
+
+<pre><code>export http_proxy=&lt;your proxy&gt;
+export https_proxy=$http_proxy
+</code></pre>
+
+<p>（为方便，最好将上面的设置到你的.bashrc中）</p>
+
+<pre><code>sudo -E apt-get update
+sudo -E apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
+sudo reboot
+</code></pre>
+
+<p>重启以后</p>
+
+<pre><code>sudo -E sh -c &quot;wget -qO- https://get.docker.io/gpg | apt-key add -&quot;
+sudo -E sh -c &quot;echo deb http://get.docker.io/ubuntu docker main\
+&gt;&gt; /etc/apt/sources.list.d/docker.list&quot;
+sudo -E apt-get update
+sudo -E apt-get install lxc-docker-0.7.1
+</code></pre>
+
+<p>##代理问题的解决</p>
+
+<p>一半您的unbundu，会在公司的防火墙之后，所以您需要设置代理。</p>
+
+<p>默认安装是不能docker search人和东西的， 会出现如下的错误</p>
+
+<pre><code>root@precise64:/vagrant/registry# docker search bash
+2013/12/10 05:37:21 Error: Get https://index.docker.io/v1/search?q=bash: dial tcp 54.224.119.89:443: connection timed out
+</code></pre>
+
+<p>解决办法是</p>
+
+<ol>
+<li><p>停掉默认的docker 后台</p>
+
+<p><code>service docker stop</code></p></li>
+
+<li><p>在具有proxy的环境变量下运行后台进</p>
+
+<p><code>sudo -E docker -d &amp; </code></p></li>
+
+<li><p>运行docker search</p>
+
+<p><code>sudo -E docker run ubuntu /bin/echo hello world</code></p>
+
+<p><code>sudo -E docker run -i -t ubuntu /bin/bash </code></p></li>
+</ol>
+
+	</div>
+</article>
+<section id="comment">
+    
+<div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'zhengyaotian'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+            </div>
+             <nav id="pagenavi">
+               <div class="center"><a href="/archive/">Blog Archives</a></div>
+             </nav>
+ 
+          </div>
+        </div>
+
+
+        <footer id="footer" class="inner">
+          <p>Copyright &copy; 2012-2014 - <a href="index.html" title="Zheng Yaotian">Zheng Yaotian</a> - <span class="credit">Powered by <a href="http://www.golang.org">Golang</a></span></p>
+          友情链接: <a href="http://hongbinzuo.github.io/"><u>左洪斌博客</u></a>  <a href="http://bobjiang.com/"><u>Bob Jiang Blog</u></a>
+        </footer>
+        <script src="static/themes/default/js/slash.js"></script>
+      </div>
+
+    </div>
+
+    <div style="display:none">
+      <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1dd58258adc35728a56629def5cbb20' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+    </div>
+  </body>
+</html>

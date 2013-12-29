@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-CTU的使用，配置Digi XBee模块</title>
+  
+    <meta name="author" content="Yaotian Zheng">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/yaotian/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<script src="/assets/yaotian/javascripts/jquery.min.js"></script>
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="left-col">
+
+        <div class="intrude-less">
+          <header id="header" class="inner">
+            <div class="profilepic">	
+              <script src="static/themes/default/js/md5.js"></script>
+              <script type="text/javascript">
+                document.write("<img src='/assets/yaotian/img/my.jpeg' alt='Profile Picture' style='width: 160px;' />");
+              </script>
+            </div>
+            <h1><a href="/">Zheng Yaotian</a></h1>
+            <p class="subtitle">Zheng Yaotian个人博客,转载请注明出处</p>
+            <nav id="main-nav">
+              <ul class="main-navigation">
+                <li><a href="/">Blog</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/archive/">Archives</a></li>
+              </ul>
+            </nav>
+            <nav id="sub-nav">
+              <div class="social">
+                <a class="weibo" href="http://www.weibo.com/yaotian" title="Weibo">Weibo</a>
+                <a class="facebook" href="https://www.facebook.com/zheng.yaotian" title="Facebook">Facebook</a>
+                <a class="twitter" href="https://twitter.com/zhengyaotian" title="Twitter">Twitter</a>
+                <a class="github" href="https://github.com/yaotian" title="GitHub">GitHub</a>
+                <a class="rss" href="/rss.xml" title="rss">RSS</a>
+              </div>
+            </nav>
+
+          </header>				
+        </div>
+
+      </div>
+
+
+      <div class="mid-col">
+
+        <div class="mid-col-container">
+          <div id="content" class="inner">
+            <div itemscope itemtype="http://schema.org/Blog">
+              
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <h1 class="title" itemprop="name">X-CTU的使用，配置Digi XBee模块</h1>
+	<div class="entry-content" itemprop="articleBody">
+    <p>1.下载软件</p>
+
+<p>file:///C:/Users/eyaotzh/Downloads/40003002_B.exe</p>
+
+<p>如果你第一次使用该软件，这时候你打开X-CTU，会发现没有找到相应的Com port. 执行第二部</p>
+
+<p>2.第一步出错的原因是没有安装相应的USB驱动</p>
+
+<p>将你的XBee的USB连接线插到电脑的USB口上， 将你的打开windows的“device manager&rdquo; ，中文是设备管理器。从中可以看到有问号的设备，说明这些设备还没有驱动程序。</p>
+
+<p>通常这个设备是ft232r, 用强大的google找“ft232r win7 驱动” 找到相应的驱动程序。</p>
+
+<p>我找到的是  <a href="http://www.ftdichip.com/Drivers/VCP.htm">http://www.ftdichip.com/Drivers/VCP.htm</a></p>
+
+<p>这样你就可以从X-CTU找到这个XBee了。</p>
+
+<p>3.用X-CTU来配置XBee的参数</p>
+
+<p>有这么几个重要的参数需要配置： CH, ID, DH, DL, MY, SH, SL</p>
+
+<p>CH：Channel 這個功能是讓Xbee的操作頻道可以更改成想要的頻道，因為常常會有相同的頻道之間會互相干擾，這個參數的最小是0x0B 到0x1A ＝ 0x0F = 16個頻段</p>
+
+<p>ID：PAN ID (Personal Area Network ID) 也就是個人區域網路的id編號，這個指的是在C段頻道當中，同一個PAN ID的編號之間的xbee才能相互看到，也就是達到分群的功能。這參數最小值是0最大是 0xFFFF</p>
+
+<p>DH, DL ： Destination Address High/Low 這是IEEE 802.15.4所提供的定址能力，當DH+DL的時候最高可以提供32bit的定址能力，DH,DL個別的最小值是0最大值是0xFFFFFFFF，光是DL就有65535個node可以設定，當不使用DH的時候只需設定0，DL的範圍變成0~0xFFFF。</p>
+
+<p>MY：16bit的來源定址，基本上這個參數就是設定自己編號是多少，最小從0到0xFFFF，可以設定65,536個node。</p>
+
+<p>SH, SL：這兩個參數就是Xbee唯一的id編號，SH+SL等於一個唯一的MY編號，要讀取SH+SL就必須要使用DH+SL才可以用</p>
+
+<p>例如：</p>
+
+<p>先將第一顆node的參數設定成：</p>
+
+<pre><code>ID = 888
+
+DL=1234
+
+MY=5678
+</code></pre>
+
+<p>第二颗的参数：</p>
+
+<pre><code>ID=888
+
+DL=5678
+
+MY=1234
+</code></pre>
+
+	</div>
+</article>
+<section id="comment">
+    
+<div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'zhengyaotian'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+            </div>
+             <nav id="pagenavi">
+               <div class="center"><a href="/archive/">Blog Archives</a></div>
+             </nav>
+ 
+          </div>
+        </div>
+
+
+        <footer id="footer" class="inner">
+          <p>Copyright &copy; 2012-2014 - <a href="index.html" title="Zheng Yaotian">Zheng Yaotian</a> - <span class="credit">Powered by <a href="http://www.golang.org">Golang</a></span></p>
+          友情链接: <a href="http://hongbinzuo.github.io/"><u>左洪斌博客</u></a>  <a href="http://bobjiang.com/"><u>Bob Jiang Blog</u></a>
+        </footer>
+        <script src="static/themes/default/js/slash.js"></script>
+      </div>
+
+    </div>
+
+    <div style="display:none">
+      <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1dd58258adc35728a56629def5cbb20' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+    </div>
+  </body>
+</html>

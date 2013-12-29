@@ -1,0 +1,27 @@
+<section class="archives">
+<p>
+<h1 class="year">{{year}}</h1>
+</p>
+{{#months}}
+  <h2>{{month}}</h2>
+  {{#posts?to_posts}}
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="meta">
+            <div class="date">
+            <time datetime="{{date}}" data-updated="true" itemprop="datePublished">{{date}}</time>
+            </div>
+            <div class="tags">
+              {{# tags?to_tags }}
+              {{> tags_post }}
+              {{/ tags?to_tags }}
+            </div>	
+        </div>
+        <h1 class="title" itemprop="name">
+        <a href="{{url}}" itemprop="url">{{title}}</a>
+        </h1>
+    </article>
+  {{/posts?to_posts}}
+{{/months}}
+</section>
+
+

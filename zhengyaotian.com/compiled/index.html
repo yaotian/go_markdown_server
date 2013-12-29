@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zheng Yaotian个人博客- 学习,写作,分享,快乐,编程</title>
+  
+    <meta name="description" content="Zheng Yaotian的个人博客，关注开发语言，架构，大数据，软件工程，流数据，数据挖掘，分布式计算">
+  
+    <meta name="author" content="Yaotian Zheng">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/yaotian/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<script src="/assets/yaotian/javascripts/jquery.min.js"></script>
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="left-col">
+
+        <div class="intrude-less">
+          <header id="header" class="inner">
+            <div class="profilepic">	
+              <script src="static/themes/default/js/md5.js"></script>
+              <script type="text/javascript">
+                document.write("<img src='/assets/yaotian/img/my.jpeg' alt='Profile Picture' style='width: 160px;' />");
+              </script>
+            </div>
+            <h1><a href="/">Zheng Yaotian</a></h1>
+            <p class="subtitle">Zheng Yaotian个人博客,转载请注明出处</p>
+            <nav id="main-nav">
+              <ul class="main-navigation">
+                <li><a href="/">Blog</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/archive/">Archives</a></li>
+              </ul>
+            </nav>
+            <nav id="sub-nav">
+              <div class="social">
+                <a class="weibo" href="http://www.weibo.com/yaotian" title="Weibo">Weibo</a>
+                <a class="facebook" href="https://www.facebook.com/zheng.yaotian" title="Facebook">Facebook</a>
+                <a class="twitter" href="https://twitter.com/zhengyaotian" title="Twitter">Twitter</a>
+                <a class="github" href="https://github.com/yaotian" title="GitHub">GitHub</a>
+                <a class="rss" href="/rss.xml" title="rss">RSS</a>
+              </div>
+            </nav>
+
+          </header>				
+        </div>
+
+      </div>
+
+
+      <div class="mid-col">
+
+        <div class="mid-col-container">
+          <div id="content" class="inner">
+            <div itemscope itemtype="http://schema.org/Blog">
+              
+<div class="page-header" style="margin-top:30px">
+  <h1>Zheng Yaotian个人博客- 学习,写作,分享,快乐,编程 </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    
+
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-12-08" data-updated="true" itemprop="datePublished">2013-12-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+      <a class="category" href="/tags/#martini-ref">martini</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/golang%E7%9A%84%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A1%86%E6%9E%B6-martini-%E9%A9%AC%E6%8F%90%E5%B0%BC-%28%E6%9C%AA%E5%AE%8C%29/" itemprop="url">golang的另一个框架 martini 马提尼 (未完)</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>马提尼，是种好酒，以此给一个框架命名，为何？让我们了解一下这个框架</p>
+
+<h2><a style="display: block;" name="初步了解" href="#初步了解"></a>初步了解</h2>
+
+<p>server.go</p>
+
+<pre><code>    package main
+
+    import &quot;github.com/codegangsta/martini&quot;
+
+    func main() {
+      m := martini.Classic()
+      m.Get(&quot;/&quot;, func() string {
+        return &quot;Hello world!&quot;
+      })
+      m.Run()
+    }
+</code></pre>
+
+<h2><a style="display: block;" name="特色" href="#特色"></a>特色</h2>
+
+<ul>
+<li>和 http.HandleFunc interface完全兼容</li>
+<li>和其它的golang package能很好的工作</li>
+<li>Non-intrusive design</li>
+</ul>
+
+<h2><a style="display: block;" name="classic-martini" href="#classic-martini"></a>Classic Martini</h2>
+
+<p></p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/golang%E7%9A%84%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A1%86%E6%9E%B6-martini-%E9%A9%AC%E6%8F%90%E5%B0%BC-%28%E6%9C%AA%E5%AE%8C%29/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-12-08" data-updated="true" itemprop="datePublished">2013-12-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#docker-ref">docker</a>
+
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/Cloud/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3docker%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%28%E6%9C%AA%E5%AE%8C%29/" itemprop="url">深入了解docker关键技术(未完)</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <h2><a style="display: block;" name="好处" href="#好处"></a>好处</h2>
+
+<h2><a style="display: block;" name="关键技术" href="#关键技术"></a>关键技术</h2>
+
+<h3>Linux Container</h3>
+
+<h3>AUFS</h3>
+
+<p>Aufs 另一个 unionfs. 版本 20090126
+Aufs是一个类似于Unionfs的可堆叠联合文件系统，它将多个目录整合成单一的目录</p>
+
+<h2><a style="display: block;" name="成功案例" href="#成功案例"></a>成功案例</h2>
+
+<p>openshift开始支持
+openstack开始支持
+google的computer engine开始支持
+baidu用来做从写他们的PaaS</p>
+
+<h2><a style="display: block;" name="目前存在的问题" href="#目前存在的问题"></a>目前存在的问题</h2>
+
+<p>docker目前缺少了三个功能：磁盘限制、网络限制、从宿主机到container执行命令? warden 里面有这些实现?</p>
+
+<p>container与宿主机共享同一内核，安全问题是一大隐患。目前各家做法不同，尚没有特别完善的方案。openshift采用SELinux；dotcloud用grsec打上内核补丁；stackato用的apparmor； ubuntu正在努力用apparmor解决lxc安全问题，http://t.cn/zQCdsD9</p>
+
+<p>warden是比较完备的container方案； docker目前刚起步，还欠缺一些功能，例如磁盘限制和网络限制；两者共同的问题是都只能跑在 ubuntu上，对centos不够。主要原因是要利用 ubuntu 的 AUFS； docker目前正在往 BTRFS上移植，值得期待</p>
+
+  </div>
+  <div class="more">
+    <a href="/Cloud/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3docker%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%28%E6%9C%AA%E5%AE%8C%29/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-12-08" data-updated="true" itemprop="datePublished">2013-12-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#docker-ref">docker</a>
+
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/Cloud/%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89docker-repository/" itemprop="url">建立自己的私有docker repository</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <h2><a style="display: block;" name="安装并运行docker-repositroy" href="#安装并运行docker-repositroy"></a>安装并运行docker repositroy</h2>
+
+<pre><code>  git clone https://github.com/dotcloud/docker-registry
+  cd docker-registry/config
+  cp config_sample.yml config.yml
+  vi config.yml
+
+
+        # This is the default configuration when no flavor is specified
+        dev:
+            storage: local
+            storage_path: /home/vagrant/registry
+            loglevel: debug
+
+
+
+  mkdir /home/vagrant/registry
+  sudo apt-get install build-essential python-dev libevent-dev python-pip libssl-dev
+  cd ../
+  sudo pip install -r requirements.txt
+
+
+  sudo gunicorn --access-logfile - --debug -k gevent -b 0.0.0.0:8888 -w 1 wsgi:application &amp;
+</code></pre>
+
+<h2><a style="display: block;" name="tag-and-提交自己的docker" href="#tag-and-提交自己的docker"></a>tag and 提交自己的docker</h2>
+
+  </div>
+  <div class="more">
+    <a href="/Cloud/%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89docker-repository/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-12-08" data-updated="true" itemprop="datePublished">2013-12-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#docker-ref">docker</a>
+
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/Cloud/%E8%AF%95%E7%94%A8Docker/" itemprop="url">试用Docker</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>目前版本0.7</p>
+
+<p>支持Ubuntu, 一定要装64位的，否则装不上docker，目前不支持</p>
+
+<p><a href="http://docs.docker.io/en/latest/installation/ubuntulinux/">http://docs.docker.io/en/latest/installation/ubuntulinux/</a></p>
+
+<p>##在Ubuntu上安装</p>
+
+<pre><code>export http_proxy=&lt;your proxy&gt;
+export https_proxy=$http_proxy
+</code></pre>
+
+<p>（为方便，最好将上面的设置到你的.bashrc中）</p>
+
+<pre><code>sudo -E apt-get update
+sudo -E apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
+sudo reboot
+</code></pre>
+
+<p>重启以后</p>
+
+<pre><code>sudo -E sh -c &quot;wget -qO- https://get.docker.io/gpg | apt-key add -&quot;
+sudo -E sh -c &quot;echo deb http://get.docker.io/ubuntu docker main\
+&gt;&gt; /etc/apt/sources.list.d/docker.list&quot;
+sudo -E apt-get update
+sudo -E apt-get install lxc-docker-0.7.1
+</code></pre>
+
+  </div>
+  <div class="more">
+    <a href="/Cloud/%E8%AF%95%E7%94%A8Docker/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-15" data-updated="true" itemprop="datePublished">2013-10-15</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#VIM-ref">VIM</a>
+
+      
+      <a class="category" href="/tags/#Configuration-ref">Configuration</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/配置管理/VIM%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/" itemprop="url">VIM开发环境快速搭建</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p><a href="https://github.com/yaotian/.vim">https://github.com/yaotian/.vim</a></p>
+
+<pre><code>curl -L https://raw.github.com/yaotian/.vim/master/install_ubuntu.sh|bash
+</code></pre>
+
+<p>一条命令，会安装所有的插件以及辅助软件，包括代码提示等。</p>
+
+<p>目前环境可以支持一下语言的开发， golang, python, html， javascript等</p>
+
+  </div>
+  <div class="more">
+    <a href="/配置管理/VIM%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/About-golang/" itemprop="url">About golang</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>接触了不少程序语言，大学的C,C++,pascal,VB, VC, 后来工作中用到了Perl, PHP, Java, Shell script. 业余项目用Python. 后来因为关注了分布式操作系统Plan9, 再而知道Plan9的几个大牛从贝尔实验室来到google发明了golang,进而才仔细关注了golang.</p>
+
+<p>接触到golang以后，对它有一种莫名的好感。对它的感觉像是。。。浑身肌肉疙瘩的刚满18岁的棒小伙，充满了力量，却不失行动的轻盈，虽然有些稚气，却充满了希望。</p>
+
+<p>本站就为Go语言开发而成。</p>
+
+<p>以下是收集到的golang的一些资源</p>
+
+<h2><a style="display: block;" name="google资源" href="#google资源"></a>Google资源</h2>
+
+<h3>官方资源</h3>
+
+<ul>
+<li><a href="http://code.google.com/p/go/downloads/list">golang下载</a><br /></li>
+<li><a href="http://code.google.com/p/go-wiki/w/list">go wiki</a><br /></li>
+<li><a href="http://build.golang.org/">go build result</a><br /></li>
+<li><a href="http://golangwiki.org/wiki/index.php?title=%E5%8C%85%E5%88%97%E8%A1%A8">标准包列表</a><br /></li>
+</ul>
+
+<p>另：<br />
++ <a href="http://go-lang.cat-v.org/">Go lang cat v</a><br />
++ <a href="https://github.com/wonderfo/wonderfogo/wiki">国人一个信息集中站</a></p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/About-golang/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/import-cycle-not-allowed%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="url">import cycle not allowed的问题</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>这个错误极其隐蔽</p>
+
+<p>花了近半个小时，浪费呀。</p>
+
+<p>如果你遇到这个错误</p>
+
+<pre><code>  import cycle not allowed 
+</code></pre>
+
+<p>查查你的代码的import部分，是不是将自己所在的package也import进来了</p>
+
+<p>例如</p>
+
+<pre><code>    package Test
+    import (
+        &quot;Test&quot;
+    )
+</code></pre>
+
+  </div>
+  <div class="more">
+    <a href="/golang/import-cycle-not-allowed%E7%9A%84%E9%97%AE%E9%A2%98/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/Go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" itemprop="url">Go语言笔记</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <h1><a style="display: block;" name="go语言笔记" href="#go语言笔记"></a>Go语言笔记</h1>
+
+<h2><a style="display: block;" name="在window下部署开发环境" href="#在window下部署开发环境"></a>在window下部署开发环境</h2>
+
+<p>1.install go (??)<br />
+2.编辑器，可以用vim,也可以用sublime<br />
+3.安装 gocode</p>
+
+<pre><code>go get github.com/nsf/gocode
+go install github.com/nsf/gocode
+</code></pre>
+
+<p>Note: 用proxy的话在环境中设置http_proxy 和https_proxy</p>
+
+<h2><a style="display: block;" name="指针" href="#指针"></a>指针</h2>
+
+<p>有指针， 但没有指针运算</p>
+
+<p>用法 new * &amp;</p>
+
+<p>go语言的指针，基本上只剩下用于区分 byref 和 byval 语义。多数人对指针都比较恐惧，其实是非常简单的东西，很多语言都有的。
+做个类比的话，指针相当于 the,表示locate到这个特定位置，a的话就byVal值传递了。
+go的method很体现这个问题
+func (p *T) DoSomething() 就指向一个特定的*T as Receiver
+func (p T) DoSomething() 就只指向一个类型T，不能够改变特定的T的值。</p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/Go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/%E5%A6%82%E4%BD%95%E5%86%99%E5%A5%BDAPI/" itemprop="url">如何写好API</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>这是一篇如何写好API的好文章</p>
+
+<p><a href="http://dev.pocoo.org/~mitsuhiko/API.pdf">http://dev.pocoo.org/~mitsuhiko/API.pdf</a></p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/%E5%A6%82%E4%BD%95%E5%86%99%E5%A5%BDAPI/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+      <a class="category" href="/tags/#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-ref">单元测试</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/golang-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" itemprop="url">golang 单元测试</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <h2><a style="display: block;" name="测试某个文件" href="#测试某个文件"></a>测试某个文件</h2>
+
+<p>使用”-file”参数。go test –file **.go 。例如，</p>
+
+<p>go test  -file b_test.go</p>
+
+<p>”-file”参数不是必须的，可以省略。如果你输入go test b_test.go也会得到一样的效果</p>
+
+<p>warning: GOPATH set to GOROOT (c:\go) has no effect</p>
+
+<p>PASS</p>
+
+<p>ok      <em>/F</em>/workspace/goSample01/src/test      0.359s</p>
+
+<h2><a style="display: block;" name="测试某个方法" href="#测试某个方法"></a>测试某个方法</h2>
+
+<p>go test  -run=&lsquo;TestSomething&rsquo;</p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/golang-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+
+  </div>
+</div>
+
+            </div>
+             <nav id="pagenavi">
+               <div class="center"><a href="/archive/">Blog Archives</a></div>
+             </nav>
+ 
+          </div>
+        </div>
+
+
+        <footer id="footer" class="inner">
+          <p>Copyright &copy; 2012-2014 - <a href="index.html" title="Zheng Yaotian">Zheng Yaotian</a> - <span class="credit">Powered by <a href="http://www.golang.org">Golang</a></span></p>
+          友情链接: <a href="http://hongbinzuo.github.io/"><u>左洪斌博客</u></a>  <a href="http://bobjiang.com/"><u>Bob Jiang Blog</u></a>
+        </footer>
+        <script src="static/themes/default/js/slash.js"></script>
+      </div>
+
+    </div>
+
+    <div style="display:none">
+      <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1dd58258adc35728a56629def5cbb20' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+    </div>
+  </body>
+</html>

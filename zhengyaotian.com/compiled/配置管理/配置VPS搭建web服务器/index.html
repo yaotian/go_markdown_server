@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配置VPS搭建web服务器</title>
+  
+    <meta name="author" content="Yaotian Zheng">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/yaotian/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<script src="/assets/yaotian/javascripts/jquery.min.js"></script>
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="left-col">
+
+        <div class="intrude-less">
+          <header id="header" class="inner">
+            <div class="profilepic">	
+              <script src="static/themes/default/js/md5.js"></script>
+              <script type="text/javascript">
+                document.write("<img src='/assets/yaotian/img/my.jpeg' alt='Profile Picture' style='width: 160px;' />");
+              </script>
+            </div>
+            <h1><a href="/">Zheng Yaotian</a></h1>
+            <p class="subtitle">Zheng Yaotian个人博客,转载请注明出处</p>
+            <nav id="main-nav">
+              <ul class="main-navigation">
+                <li><a href="/">Blog</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/archive/">Archives</a></li>
+              </ul>
+            </nav>
+            <nav id="sub-nav">
+              <div class="social">
+                <a class="weibo" href="http://www.weibo.com/yaotian" title="Weibo">Weibo</a>
+                <a class="facebook" href="https://www.facebook.com/zheng.yaotian" title="Facebook">Facebook</a>
+                <a class="twitter" href="https://twitter.com/zhengyaotian" title="Twitter">Twitter</a>
+                <a class="github" href="https://github.com/yaotian" title="GitHub">GitHub</a>
+                <a class="rss" href="/rss.xml" title="rss">RSS</a>
+              </div>
+            </nav>
+
+          </header>				
+        </div>
+
+      </div>
+
+
+      <div class="mid-col">
+
+        <div class="mid-col-container">
+          <div id="content" class="inner">
+            <div itemscope itemtype="http://schema.org/Blog">
+              
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <h1 class="title" itemprop="name">配置VPS搭建web服务器</h1>
+	<div class="entry-content" itemprop="articleBody">
+    <p>在Burst net购买 VPS XEN 512M。 一个月7.9美金。买XEN的原因是这个类型的VPS是不会超卖的。所以比其它的稍贵。在BurstNet上最便宜的为5.9美金。</p>
+
+<p>选择VPS位置为LOS的，美国西海岸，网络速度会比较好。</p>
+
+<p>系统为Ubuntu的最新版本。</p>
+
+<h2><a style="display: block;" name="apt-get-update" href="#apt-get-update"></a>apt-get update</h2>
+
+<p>做一次更新</p>
+
+<h2><a style="display: block;" name="apt-get-install-git" href="#apt-get-install-git"></a>apt-get install git</h2>
+
+<p>安装git. 现在哪能离得开这个呀</p>
+
+<h2><a style="display: block;" name="安装google-go环境。" href="#安装google-go环境。"></a>安装google go环境。</h2>
+
+<h3>先看一下主机的CPU类型</h3>
+
+<pre><code>lscpu
+</code></pre>
+
+<p>显示如下</p>
+
+<pre><code>Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                1
+On-line CPU(s) list:   0
+Thread(s) per core:    1
+Core(s) per socket:    1
+CPU socket(s):         1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 44
+Stepping:              2
+CPU MHz:               2400.144
+BogoMIPS:              4800.28
+Hypervisor vendor:     Xen
+Virtualization type:   para
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              12288K
+NUMA node0 CPU(s):     0    
+
+</code></pre>
+
+<p>说明是 x86, 64位平台</p>
+
+<h3>下载google go源代码并编译</h3>
+
+<p>下载源代码及编译</p>
+
+<pre><code>apt-get install python-setuptools python-dev
+easy_install mercurial
+hg clone -r release https://go.googlecode.com/hg/ $GOROOT
+
+cd GOROOT/src
+./all.bash
+</code></pre>
+
+<p>成功编译后，将GOROOT/bin加入到你的path中</p>
+
+<h3>安装lnmp</h3>
+
+<pre><code>wget http://soft.vpser.net/lnmp/lnmp0.9-full.tar.gz
+</code></pre>
+
+<p>解压缩后,编译安装
+    ubuntu.sh</p>
+
+<h3>配置virtualenv</h3>
+
+<pre><code>apt-get install python-virtualenv
+virtualenv --no-site-packages dj1.3
+source {folder}/bin/activate
+pip install Django==1.3  
+</code></pre>
+
+<h3>安装flup</h3>
+
+<p>为了fastcgi</p>
+
+<h3>安装 MySQL-Python</h3>
+
+<pre><code>apt-get install libmysqld-dev
+apt-get install libmysqlclient-dev
+python setup.py  install
+</code></pre>
+
+<h3>mysql的数据的转移</h3>
+
+<pre><code>mysqldump -u root -p car &gt; car.sql
+mysql -u root -p car &lt; car.sql
+</code></pre>
+
+	</div>
+</article>
+<section id="comment">
+    
+<div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'zhengyaotian'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+            </div>
+             <nav id="pagenavi">
+               <div class="center"><a href="/archive/">Blog Archives</a></div>
+             </nav>
+ 
+          </div>
+        </div>
+
+
+        <footer id="footer" class="inner">
+          <p>Copyright &copy; 2012-2014 - <a href="index.html" title="Zheng Yaotian">Zheng Yaotian</a> - <span class="credit">Powered by <a href="http://www.golang.org">Golang</a></span></p>
+          友情链接: <a href="http://hongbinzuo.github.io/"><u>左洪斌博客</u></a>  <a href="http://bobjiang.com/"><u>Bob Jiang Blog</u></a>
+        </footer>
+        <script src="static/themes/default/js/slash.js"></script>
+      </div>
+
+    </div>
+
+    <div style="display:none">
+      <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1dd58258adc35728a56629def5cbb20' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+    </div>
+  </body>
+</html>
