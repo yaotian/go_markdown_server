@@ -1,7 +1,7 @@
 ---
 date: 2012-12-08
 layout: post
-title:  生活哲学
+title:  Ghost
 categories:
 - 眼界
 tags:
