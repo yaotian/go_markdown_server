@@ -1,4 +1,14 @@
-# Macbook Air 如何连接两个显示器
+---
+date: 2013-09-08
+layout: post
+title:  Macbook Air 如何连接两个显示器
+categories:
+- 工具
+tags:
+- Mac
+- Monitor
+---
+
 
 Macbook Air 的接口有限， 一个闪电口， 两个USB3.0接口。
 
