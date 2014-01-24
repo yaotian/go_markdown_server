@@ -28,5 +28,7 @@ Dell显示器和笔记本的闪电口连接，Lenovo显示器和笔记本通过�
 
 外置显卡存在的问题是屏幕移动有延迟，不过我主要用来做副显示器，所以对于我来说，我可以接受。
 
+Show 一下工作台。
 
+![image](http://photo.weibo.com/1408874714/wbphotos/large/mid/3670264430547144/pid/53f9b8dajw1ecul5pehx7j20vk0nogrc) 
 
