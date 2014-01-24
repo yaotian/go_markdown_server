@@ -30,5 +30,5 @@ Dell显示器和笔记本的闪电口连接，Lenovo显示器和笔记本通过�
 
 Show 一下工作台。
 
-![image](http://photo.weibo.com/1408874714/wbphotos/large/mid/3670264430547144/pid/53f9b8dajw1ecul5pehx7j20vk0nogrc) 
+![image](http://ww2.sinaimg.cn/large/53f9b8dajw1ecul5pehx7j20vk0nogrc.jpg) 
 
