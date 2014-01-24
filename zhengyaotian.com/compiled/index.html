@@ -554,6 +554,848 @@ func (p T) DoSomething() 就只指向一个类型T，不能够改变特定的T�
   </div>
 </article>
 
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+      <a class="category" href="/tags/#tuning-ref">tuning</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/golang-memory-tuning/" itemprop="url">golang memory tuning</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>如果你的程序内存占用很大</p>
+
+<p>项目中， 内存占用很大，运行过程中油几百兆。</p>
+
+<h2><a style="display: block;" name="解决办法：" href="#解决办法："></a>解决办法：</h2>
+
+<p>你可以检查所有的string的处理， 能用[]byte就用[]byte, 特别是http.Get()， 还有regexp中都用[]byte。</p>
+
+<p>效果明显： 从几百兆，到几十兆</p>
+
+<h2><a style="display: block;" name="如何看内存溢出" href="#如何看内存溢出"></a>如何看内存溢出</h2>
+
+<p>你可以在程式運行過程中產生多個 heap dump 檔案，接著在 perftools 裡使用 -base 參數來比對差異</p>
+
+<pre><code>  e.g.
+  go tool pprof ./gb --base heap-19221-1.pprof heap-19221-2.pprof 
+</code></pre>
+
+  </div>
+  <div class="more">
+    <a href="/golang/golang-memory-tuning/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+      <a class="category" href="/tags/#%E7%AE%97%E6%B3%95-ref">算法</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/golang-%E7%AE%97%E6%B3%95%E5%8C%85/" itemprop="url">golang 算法包</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p><a href="https://code.google.com/p/biogo/">https://code.google.com/p/biogo/</a></p>
+
+<p><a href="https://github.com/jbrukh/bayesian">https://github.com/jbrukh/bayesian</a></p>
+
+<p><a href="http://go-lang.cat-v.org/pure-go-libs">http://go-lang.cat-v.org/pure-go-libs</a><br />
+Math 章节</p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/golang-%E7%AE%97%E6%B3%95%E5%8C%85/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+      <a class="category" href="/tags/#VIM-ref">VIM</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/%E7%94%A8VIM%E6%89%93%E9%80%A0golang%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="url">用VIM打造golang的开发环境</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>VIM的方便就不用说了，听说一个中国的同事到了google的一个部门工作，发现除了一人使用emacs之外，其他人都在使用VIM，由此可见VIM在工程师中是多么的重要和流行</p>
+
+<p>在设置VIM之前,首先保证成功安装了Go，本文不再累述。本文主要讲如何设置VIM
+在.vimrc中加入一下内容</p>
+
+<pre><code>&quot; add golang support&quot;
+
+set rtp+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
+autocmd FileType go autocmd BufWritePre &lt;buffer&gt; Fmt
+</code></pre>
+
+<p>这段话能让你的VIM有了语法颜色，自动缩进。保存自动format代码。</p>
+
+<p>如果需要详细的代码提示，需要安装gocode, 且在.vimrc中加入</p>
+
+<pre><code>&quot; add code assistant
+imap &lt;C-x&gt; &lt;C-x&gt;&lt;C-o&gt;
+</code></pre>
+
+<p>这样按ctrl+x后，就可以看到代码提示了</p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/%E7%94%A8VIM%E6%89%93%E9%80%A0golang%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+      <a class="category" href="/tags/#tail-ref">tail</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/Go-package-for-tail-ing-files/" itemprop="url">Go package for tail-ing files</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>A Go package striving to emulate the features of the BSD <code>tail</code> program.</p>
+
+<pre><code class="Go">t, err := tail.TailFile(&quot;/var/log/nginx.log&quot;, tail.Config{Follow: true})
+for line := range t.Lines {
+    fmt.Println(line.Text)
+}
+</code></pre>
+
+<p>See <a href="http://godoc.org/github.com/ActiveState/tail">API documentation</a>.</p>
+
+<h2><a style="display: block;" name="log-rotation" href="#log-rotation"></a>Log rotation</h2>
+
+<p>Tail comes with full support for truncation/move detection as it is
+designed to work with log rotation tools.</p>
+
+<h2><a style="display: block;" name="installing" href="#installing"></a>Installing</h2>
+
+<pre><code>go get github.com/ActiveState/tail/...
+</code></pre>
+
+<h2><a style="display: block;" name="todo" href="#todo"></a>TODO</h2>
+
+<ul>
+<li>Arbitrary values for <code>Location</code></li>
+<li><code>Location</code> could be specified in both lines and bytes metrics.</li>
+</ul>
+
+  </div>
+  <div class="more">
+    <a href="/golang/Go-package-for-tail-ing-files/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+      <a class="category" href="/tags/#machine-learning-ref">machine learning</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/%E4%B8%80%E4%B8%AA%E7%94%A8golang%E5%AE%9E%E7%8E%B0%E7%9A%84LDA/" itemprop="url">一个用golang实现的LDA</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <h1><a style="display: block;" name="一个用golang实现的lda" href="#一个用golang实现的lda"></a>一个用golang实现的LDA</h1>
+
+<p><a href="https://code.google.com/p/lda-go/">https://code.google.com/p/lda-go/</a></p>
+
+<p>Gibbs sampling training and inference of the Latent Dirichlet Allocation model written in Google&rsquo;s Go programming language</p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/%E4%B8%80%E4%B8%AA%E7%94%A8golang%E5%AE%9E%E7%8E%B0%E7%9A%84LDA/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/golang%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AE%BE%E7%BD%AE/" itemprop="url">golang开发环境的设置</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>golang给我的感觉是简洁，语法，环境，执行，部署，无不讲简洁做到极致。所以开发环境的设置也是简洁的。</p>
+
+<p>本文包括</p>
+
+<ul>
+<li>golang的执行环境的设置</li>
+<li>Vim环境的设置</li>
+</ul>
+
+<h2><a style="display: block;" name="goland执行环境的设置" href="#goland执行环境的设置"></a>goland执行环境的设置</h2>
+
+<h2><a style="display: block;" name="vim环境的设置" href="#vim环境的设置"></a>Vim环境的设置</h2>
+
+<p>1.复制我的vim 环境
+我的vim环境的链接中有详细的步骤说明</p>
+
+<pre><code>https://github.com/yaotian/.vim
+</code></pre>
+
+<p>2.安装Gocode，为了让vim能实现代码自动补全</p>
+
+<pre><code>  git clone git://github.com/nsf/gocode.git    
+  cd gocode&amp;make install     
+</code></pre>
+
+<p>安装好后，gocode的执行文件应该出现在$GOBIN中</p>
+
+<p>这个时候，当你用vim编辑golang代码时候，在编辑模式 下ctrl+x ctrl+o就会启动代码补全</p>
+
+<p>3.安装ctags， 为了让vim能显示function在vim的左边</p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/golang%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AE%BE%E7%BD%AE/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+      <a class="category" href="/tags/#Mac-ref">Mac</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/Mountain-Lion%E4%B8%8A%E7%94%B1%E6%BA%90%E4%BB%A3%E7%A0%81%E5%AE%89%E8%A3%85Go/" itemprop="url">Mountain Lion上由源代码安装Go</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <h1><a style="display: block;" name="mountain-lion上由源代码安装go" href="#mountain-lion上由源代码安装go"></a>Mountain Lion上由源代码安装Go</h1>
+
+<h2><a style="display: block;" name="配置hg的ca" href="#配置hg的ca"></a>配置Hg的CA</h2>
+
+<p>OS 为10.8.2
+    openssl req -new -x509 -extensions v3_ca -keyout /dev/null -out dummycert.pem -days 3650</p>
+
+<pre><code>sudo cp dummycert.pem /etc/hg-dummy-cert.pem
+</code></pre>
+
+<p>创建配置文件</p>
+
+<pre><code>vi /etc/mercurial/hgrc
+</code></pre>
+
+<p>输入一下内容</p>
+
+<pre><code>[web]
+cacerts = /etc/hg-dummy-cert.pem
+</code></pre>
+
+<h2><a style="display: block;" name="获得代码" href="#获得代码"></a>获得代码</h2>
+
+<pre><code>hg clone -u release https://code.google.com/p/go
+</code></pre>
+
+  </div>
+  <div class="more">
+    <a href="/golang/Mountain-Lion%E4%B8%8A%E7%94%B1%E6%BA%90%E4%BB%A3%E7%A0%81%E5%AE%89%E8%A3%85Go/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-10-08" data-updated="true" itemprop="datePublished">2013-10-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#golang-ref">golang</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/golang/%E7%9B%AE%E5%89%8D%E7%9C%8B%E5%88%B0%E7%9A%84Go%E8%AE%BE%E8%AE%A1%E4%B8%8D%E5%90%88%E7%90%86%E7%9A%84%E5%9C%B0%E6%96%B9/" itemprop="url">目前看到的Go设计不合理的地方</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>刚接触Go的时候，这个问题曾经困恼了我一个小时。</p>
+
+<p>export GOPATH={your src}</p>
+
+<p>困恼的地方是{your src}是你的src的父目录，而不是src目录本身。</p>
+
+<p>对于一个熟悉Java的人来说，这是非常不理解的。居然将src hardcode进GOPATH</p>
+
+<p>意味着你不能将代码放在source目录下。</p>
+
+  </div>
+  <div class="more">
+    <a href="/golang/%E7%9B%AE%E5%89%8D%E7%9C%8B%E5%88%B0%E7%9A%84Go%E8%AE%BE%E8%AE%A1%E4%B8%8D%E5%90%88%E7%90%86%E7%9A%84%E5%9C%B0%E6%96%B9/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#Launchy-ref">Launchy</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/%E6%8E%A8%E8%8D%90%E4%B8%80%E6%AC%BE%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7Launchy/" itemprop="url">推荐一款效率工具Launchy</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <h1><a style="display: block;" name="推荐一款效率工具launchy" href="#推荐一款效率工具launchy"></a>推荐一款效率工具Launchy</h1>
+
+<p>alt+space快速呼叫出窗口，并能快速启动应用程序。</p>
+
+<p>原理是搜索相应目录下的应用程序，并快速定位，启动他们。</p>
+
+<p>可以增加您自己的搜索目录。</p>
+
+<p>该软件支持各个平台，包括windows, linux, Mac OS</p>
+
+  </div>
+  <div class="more">
+    <a href="/工具/%E6%8E%A8%E8%8D%90%E4%B8%80%E6%AC%BE%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7Launchy/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#wget-ref">wget</a>
+
+      
+      <a class="category" href="/tags/#web-ref">web</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/%E5%A6%82%E4%BD%95%E7%94%A8wget%E6%8A%93%E6%95%B4%E7%AB%99%EF%BC%8C%E5%8C%85%E6%8B%ACjs%2C-css%E7%AD%89%E6%96%87%E4%BB%B6%E5%8F%8A%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" itemprop="url">如何用wget抓整站，包括js, css等文件及目录结构</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <pre><code>    wget --restrict-file-name=ascii -m -c -nv -np -k -E -p -R=exe,zip http://
+</code></pre>
+
+  </div>
+  <div class="more">
+    <a href="/工具/%E5%A6%82%E4%BD%95%E7%94%A8wget%E6%8A%93%E6%95%B4%E7%AB%99%EF%BC%8C%E5%8C%85%E6%8B%ACjs%2C-css%E7%AD%89%E6%96%87%E4%BB%B6%E5%8F%8A%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#VIM-ref">VIM</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/VIM-tips/" itemprop="url">VIM tips</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <h2><a style="display: block;" name="中文问题的解决办法" href="#中文问题的解决办法"></a>中文问题的解决办法</h2>
+
+<p>注意：如果NERDTree打开时，目录呈现乱码时，解决方案为：编辑NERD_tree.vim，找到这句call s:initVariable(&ldquo;g:NERDTreeDirArrows&rdquo;, !s:running_windows) ，把那个&rdquo;!&ldquo;去掉试试</p>
+
+<p>跟简单的方法是： 在vimcrc中 let NERDTreeDirArrows = 0</p>
+
+<p>export LANG=&ldquo;zh_CN.UTF-8&rdquo;              或者&rdquo;en_US.UTF-8&rdquo;
+ export LC_ALL=&ldquo;zh_CN.UTF-8&rdquo;           或者&rdquo;en_US.UTF-8&rdquo;</p>
+
+<p>修改SecureCRT设置
+ options-&gt;appearance  character encoding 改为utf-8</p>
+
+  </div>
+  <div class="more">
+    <a href="/工具/VIM-tips/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#Postgresql-ref">Postgresql</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/Postgresql-Tips/" itemprop="url">Postgresql Tips</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <h2><a style="display: block;" name="常用命令" href="#常用命令"></a>常用命令</h2>
+
+<h2><a style="display: block;" name="列出所有数据库" href="#列出所有数据库"></a>列出所有数据库</h2>
+
+<pre><code>\l
+</code></pre>
+
+<h2><a style="display: block;" name="选择一个数据库" href="#选择一个数据库"></a>选择一个数据库</h2>
+
+<pre><code>\c &lt;数据库名&gt;
+</code></pre>
+
+<h2><a style="display: block;" name="列出所有table名" href="#列出所有table名"></a>列出所有table名</h2>
+
+<pre><code>\d
+</code></pre>
+
+<h2><a style="display: block;" name="连接数据库" href="#连接数据库"></a>连接数据库</h2>
+
+<pre><code>psql -h &lt;host&gt; -p &lt;port&gt; -U &lt;name&gt; -d &lt;databaseName&gt;
+</code></pre>
+
+  </div>
+  <div class="more">
+    <a href="/工具/Postgresql-Tips/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#google-ref">google</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/google%E6%90%9C%E7%B4%A2%E8%A2%AB%E5%B1%8F%E8%94%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" itemprop="url">google搜索被屏蔽的解决办法</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>刚才在网上看到了一个方法，经过试验后可行，分享之。</p>
+
+<p>在Chrome中自定义一个搜索引擎，并将链接设为一下</p>
+
+<pre><code>    http://203.208.46.145/#newwindow=1&amp;site=&amp;source=hp&amp;q=%s&amp;oq=%s&amp;gs_l=hp.3...1739.6881.0.7119.3.3.0.0.0.0.0.0..0.0...0.0...1c.1.14.hp.6DdgvWcpXug&amp;bav=on.2,or.&amp;bvm=bv.46751780,d.aGc&amp;fp=155653324479abac&amp;biw=710&amp;bih=778
+</code></pre>
+
+  </div>
+  <div class="more">
+    <a href="/工具/google%E6%90%9C%E7%B4%A2%E8%A2%AB%E5%B1%8F%E8%94%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#chrome-ref">chrome</a>
+
+      
+      <a class="category" href="/tags/#evernote-ref">evernote</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/chrome%E7%9A%84evernote-clipper%E4%B8%8D%E8%83%BD%E7%99%BB%E5%BD%95%E5%88%B0%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0%E7%9A%84%E8%B4%A6%E5%8F%B7/" itemprop="url">chrome的evernote clipper不能登录到印象笔记的账号</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>吐槽贴。这种做法太。。。</p>
+
+<p>解决办法，需要将chrome的语言设置到中文， 在打开evernote clipper的chrome插件，你才能看到转到印象笔记登录的button.</p>
+
+<p>这不是歧视英文嘛。</p>
+
+<p>吐槽</p>
+
+  </div>
+  <div class="more">
+    <a href="/工具/chrome%E7%9A%84evernote-clipper%E4%B8%8D%E8%83%BD%E7%99%BB%E5%BD%95%E5%88%B0%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0%E7%9A%84%E8%B4%A6%E5%8F%B7/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#X-CTU-ref">X-CTU</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/X-CTU%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%8C%E9%85%8D%E7%BD%AEDigi-XBee%E6%A8%A1%E5%9D%97/" itemprop="url">X-CTU的使用，配置Digi XBee模块</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>1.下载软件</p>
+
+<p>file:///C:/Users/eyaotzh/Downloads/40003002_B.exe</p>
+
+<p>如果你第一次使用该软件，这时候你打开X-CTU，会发现没有找到相应的Com port. 执行第二部</p>
+
+<p>2.第一步出错的原因是没有安装相应的USB驱动</p>
+
+<p>将你的XBee的USB连接线插到电脑的USB口上， 将你的打开windows的“device manager&rdquo; ，中文是设备管理器。从中可以看到有问号的设备，说明这些设备还没有驱动程序。</p>
+
+<p>通常这个设备是ft232r, 用强大的google找“ft232r win7 驱动” 找到相应的驱动程序。</p>
+
+<p>我找到的是  <a href="http://www.ftdichip.com/Drivers/VCP.htm">http://www.ftdichip.com/Drivers/VCP.htm</a></p>
+
+<p>这样你就可以从X-CTU找到这个XBee了。</p>
+
+<p>3.用X-CTU来配置XBee的参数</p>
+
+<p>有这么几个重要的参数需要配置： CH, ID, DH, DL, MY, SH, SL</p>
+
+<p>CH：Channel 這個功能是讓Xbee的操作頻道可以更改成想要的頻道，因為常常會有相同的頻道之間會互相干擾，這個參數的最小是0x0B 到0x1A ＝ 0x0F = 16個頻段</p>
+
+<p>ID：PAN ID (Personal Area Network ID) 也就是個人區域網路的id編號，這個指的是在C段頻道當中，同一個PAN ID的編號之間的xbee才能相互看到，也就是達到分群的功能。這參數最小值是0最大是 0xFFFF</p>
+
+<p>DH, DL ： Destination Address High/Low 這是IEEE 802.15.4所提供的定址能力，當DH+DL的時候最高可以提供32bit的定址能力，DH,DL個別的最小值是0最大值是0xFFFFFFFF，光是DL就有65535個node可以設定，當不使用DH的時候只需設定0，DL的範圍變成0~0xFFFF。</p>
+
+  </div>
+  <div class="more">
+    <a href="/工具/X-CTU%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%8C%E9%85%8D%E7%BD%AEDigi-XBee%E6%A8%A1%E5%9D%97/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#VIM-ref">VIM</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/VIM%E8%B6%8A%E7%94%A8%E8%B6%8A%E5%A5%BD%E7%94%A8/" itemprop="url">VIM越用越好用</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>忽然发现我不愿意去尝试各种编辑器了，只保留了VIM.</p>
+
+<p>这么多年来，一直没离开过程序开发，用过得编辑器不下几十种了。</p>
+
+<p>想的起来的，从最早的Turbo C, 不知道还有没有人记得了。Bland 系列，MS visual 系列，  Visual Age(elicpse的前生), SourceInsight,  eclipse, 最近的Sublime。 TextMate ， 等等。</p>
+
+<p>设计到的开发语言， pascal, perl , c , c++ , java, python, golang, javascript , html, css等等</p>
+
+<p>每种开发语言， 都有一种针对它的编辑器出现。刚学习编程的时候， 就非常喜欢用各种IDE, 因为有提示， 有自动完成等功能（当然， 现在也喜欢）</p>
+
+<p>但后来发现， 不愿意去折腾各种各样的编辑器了。 我只选择了一样， 就是VIM.</p>
+
+<p>mac上用mvim, 服务器上用vim, Ubuntu上用vim, windows上用gvim (这篇就是用gvim写的)</p>
+
+<p>原因是：</p>
+
+<p>1.其它编辑器上的大多数功能， 在vim上都可以找到插件</p>
+
+<p>2.同一种配置，适合各种环境。mac, linux(server and client), windows</p>
+
+<p>3.简单，写就是了， 不需要考虑很多。就像kindle和ipad的区别， kindle的功能让你只专注看书。 VIM让你只专注你要写的代码本身。</p>
+
+<p>我现在开始理解，为什么那些程序界的老家伙们为什么都在用VIM了。因为我们都已经老了， 更专注了。</p>
+
+  </div>
+  <div class="more">
+    <a href="/工具/VIM%E8%B6%8A%E7%94%A8%E8%B6%8A%E5%A5%BD%E7%94%A8/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#Linux-ref">Linux</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/UNIX%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="url">UNIX常用命令</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <ol>
+<li><p>nohup不要输出Log</p>
+
+<p>nohup ./main &gt;/dev/null 2&gt;&amp;1 &amp;<br />
+setsid ./main</p></li>
+
+<li><p>用apt-get 升级系统</p>
+
+<p>apt-get upgrade</p></li>
+</ol>
+
+<p>它和apt-get dist-upgrade的区别是它只升级已经安装好的软件。 dis-upgrade是将整个系统升级</p>
+
+<ol>
+<li><p>setsid让进程在后台运行</p>
+
+<pre><code>setsid program
+</code></pre></li>
+
+<li><p>看一个目录下面的文件大小</p>
+
+<p>du -hs *</p></li>
+
+<li><p>将一个人加入到管理员group中</p>
+
+<p>sudo addgroup jiaqi sudo</p></li>
+
+<li><p>apt 搜索软件</p>
+
+<p>sudo sudo apt-cache search <your software></p></li>
+</ol>
+
+  </div>
+  <div class="more">
+    <a href="/工具/UNIX%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#Mac-ref">Mac</a>
+
+      
+      <a class="category" href="/tags/#%E7%BF%BB%E5%A2%99-ref">翻墙</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/Mac%E4%B8%8B%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%BF%BB%E5%A2%99%E6%8A%80%E5%B7%A7/" itemprop="url">Mac下最简单的翻墙技巧</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>以前一直用goagent来翻墙，最近一直不稳定，而我又是google的重度使用者，所以就开始想其他的解决办法。</p>
+
+<p>我有VPS， 所以对与这个来说，最简单的方法是用ssh 隧道来实现。</p>
+
+<h2><a style="display: block;" name="基本原理:" href="#基本原理:"></a>基本原理:</h2>
+
+<p>ssh可以传送数据，我们可以让那些不加密的网络连接，全部改走SSH连接。</p>
+
+<p>假定我们要让7000端口的数据，都通过SSH传向远程主机，命令就这样写：</p>
+
+<pre><code>$ ssh -D 7000 user@host
+</code></pre>
+
+<p>这样就在本机设置了一个运行在7000端口的代理。</p>
+
+<p>将浏览器的代理设置成这个代理就可以翻墙了。</p>
+
+<h2><a style="display: block;" name="具体步骤如下" href="#具体步骤如下"></a>具体步骤如下</h2>
+
+<p>1.目前有很多的VPS,便宜的有<a href="https://service.burst.net/aff.php?aff=2002">Burst net</a>,最便宜的不到6美金. 速度快而稳定的有<a href="http://www.linode.com/?r=d9ee76f48097286f4832d02e67930354125e9f7d">Linode</a>,基本上所有的VPS都支持ssh登陆的。</p>
+
+<p>2.在mac上运行下面命令</p>
+
+  </div>
+  <div class="more">
+    <a href="/工具/Mac%E4%B8%8B%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%BF%BB%E5%A2%99%E6%8A%80%E5%B7%A7/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#Mac-ref">Mac</a>
+
+      
+      <a class="category" href="/tags/#mysql-ref">mysql</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/Mac%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84mysql%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" itemprop="url">Mac下好用的mysql管理工具</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>大家知道的mysql管理工具是官网上提供的mysql workbench.</p>
+
+<p>但那个工具太难用了， 还占用很多资源。</p>
+
+<p>偶然遇到了这个工具，非常好用，支持mac平台。</p>
+
+<p><a href="http://www.sequelpro.com/">http://www.sequelpro.com/</a></p>
+
+  </div>
+  <div class="more">
+    <a href="/工具/Mac%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84mysql%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+    <div class="date">
+      <time datetime="2013-09-08" data-updated="true" itemprop="datePublished">2013-09-08</time>
+    </div>
+    <div class="tags">
+      
+      
+      <a class="category" href="/tags/#Linux-ref">Linux</a>
+
+      
+
+    </div>
+  </div>
+  <h1 class="title" itemprop="name">
+    <a href="/工具/Linux%E4%B8%8B%E7%BC%96%E8%BE%91%E5%A4%A7%E6%96%87%E4%BB%B6/" itemprop="url">Linux下编辑大文件</a>
+  </h1>
+  <div class="entry-content" itemprop="articleBody">
+    <p>如果你有在linux下用vim打开10G文件的体验的话， 你一定有这个感受，机器CPU立刻100%占用，vim长时间不反馈。</p>
+
+<p>这里提供了一个解决方案，将大文件分成小文件，然后编辑完后，恢复成大文件</p>
+
+<pre><code>split -b 512000k mysqlbak20130510.sql    
+cat ./xa* &gt; result.sql  
+</code></pre>
+
+  </div>
+  <div class="more">
+    <a href="/工具/Linux%E4%B8%8B%E7%BC%96%E8%BE%91%E5%A4%A7%E6%96%87%E4%BB%B6/" class="btn">[Read more...] </a>
+  </div>
+</article>
+
 
   </div>
 </div>

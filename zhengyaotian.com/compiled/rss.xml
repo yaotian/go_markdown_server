@@ -2,7 +2,7 @@
 <rss version="2.0">  <channel>
     <title>Zheng Yaotian</title>
     <link>http://zhengyaotian.com</link>
-    <pubDate>29 Dec 13 17:16 CST</pubDate>
+    <pubDate>06 Jan 14 20:34 CST</pubDate>
     <item>
       <title>golang的另一个框架 martini 马提尼 (未完)</title>
       <link>http://zhengyaotian.com/golang/golang%E7%9A%84%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A1%86%E6%9E%B6-martini-%E9%A9%AC%E6%8F%90%E5%B0%BC-%28%E6%9C%AA%E5%AE%8C%29/</link>
@@ -364,8 +364,8 @@
       <description>&lt;h2&gt;&lt;a style=&#34;display: block;&#34; name=&#34;为什么有这个思考&#34; href=&#34;#为什么有这个思考&#34;&gt;&lt;/a&gt;为什么有这个思考&lt;/h2&gt;&#xA;&#xA;&lt;p&gt;一个非常普通的石头，居然被人骗卖了10万。随机被拨的电话，通过语言就可以被轻松骗走几十万。这些发生在身边有些人，会被一些看似非常没有逻辑和道理的事情所骗;&lt;/p&gt;&#xA;&#xA;&lt;p&gt;有些人人云亦云,别人说什么就信什么；&lt;/p&gt;&#xA;&#xA;&lt;p&gt;别人要求做什么就做什么。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;有些人不会自己做决定；&lt;/p&gt;&#xA;&#xA;&lt;p&gt;有些人遇到困难却手足无措，没了主意。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;做什么事情，没有自己的见解，询问别人如何做。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;实际上，这些的根源是自己没有主见。没有主见的人是很容易被别人说服和欺骗的。&lt;/p&gt;&#xA;&#xA;&lt;h2&gt;&lt;a style=&#34;display: block;&#34; name=&#34;有主见的人是什么样？&#34; href=&#34;#有主见的人是什么样？&#34;&gt;&lt;/a&gt;有主见的人是什么样？&lt;/h2&gt;&#xA;&#xA;&lt;p&gt;对事物有自己的看法和见解，而且这些看法和渐渐是有事实依据的。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;见解的产生是基于一定的事实，并且合乎一定的逻辑的。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;有独立思考能力。&lt;/p&gt;&#xA;&#xA;&lt;h2&gt;&lt;a style=&#34;display: block;&#34; name=&#34;如何做一个有主见的人&#34; href=&#34;#如何做一个有主见的人&#34;&gt;&lt;/a&gt;如何做一个有主见的人&lt;/h2&gt;&#xA;&#xA;&lt;p&gt;首先，要了解别人给了你哪些信息其实,一般的语言交流内容可以分为这么几类：&#xA;1.个人喜好,比如，我喜欢黑色&#xA;2.描述事实, 比如，今天我遇到一件事情。。。&#xA;3.称述观点, 比如，我认为，我觉得，。。。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;对于个人喜好，一般不需要特别关注。&#xA;对于描述的事实，一般需要关注这个是否是一个事实。&#xA;对于描述的观点，要特别的注意，要思考一下这个观点来自于什么事实，除了这个之外，还需要思考一下得出这个观点的逻辑，要判断这个逻辑对不对。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;“这个石头非常珍贵，是我祖上传下来的，因为最近资金有点紧张，所以想出给喜欢的人{省略千字，描述这个石头的历史和好。。。},这石头在市场在卖可能得15万，因为着急，我就卖5万” 在菜市场，经常有些拿着些旧石头说这些话。而且说的时候，旁边有些人符合，有些人还假装要掏钱等。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;当别人因为某件事和你交流的时候，&lt;/p&gt;&#xA;&#xA;&lt;p&gt;第一步需要确定的是他描述的是他的事实还是观点。&#xA;显然这是他的观点，他在说这石头很好，希望有人买它。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;第二步是确定支撑观点的事实是否成立&#xA;为什么石头很好？祖上留下来就是好的？他描述的都是事实吗？&lt;/p&gt;&#xA;&#xA;&lt;p&gt;第三步就是确定其中的逻辑&#xA;因为你说这石头好，所以这个石头就好？&#xA;因为资金紧张，所以到菜市场卖石头？没有其它更方便募集资金的方式？&lt;/p&gt;&#xA;&#xA;&lt;p&gt;通过这三个步骤，还会有人买这个石头？&lt;/p&gt;&#xA;</description>
     </item>
     <item>
-      <title>生活哲学</title>
-      <link>http://zhengyaotian.com/眼界/%E7%94%9F%E6%B4%BB%E5%93%B2%E5%AD%A6/</link>
+      <title>Ghost</title>
+      <link>http://zhengyaotian.com/眼界/Ghost/</link>
       <pubDate>2012-12-08 12:00:00 +0800</pubDate>
       <description>&lt;p&gt;Ghost&lt;/p&gt;&#xA;&#xA;&lt;p&gt;一个开源博客， 看了一下，太简单了。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;真奇怪，这样的系统怎么会被炒这么火&lt;/p&gt;&#xA;&#xA;&lt;p&gt;网站在这里&lt;/p&gt;&#xA;&#xA;&lt;p&gt;&lt;a href=&#34;http://ghost.org/&#34;&gt;http://ghost.org/&lt;/a&gt;&lt;/p&gt;&#xA;</description>
     </item>
