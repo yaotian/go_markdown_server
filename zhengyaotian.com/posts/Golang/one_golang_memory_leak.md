@@ -1,7 +1,7 @@
 ---
 date: 2014-02-12
 layout: post
-title: Golang下内存泄露的一个坑
+title: Golang下内存泄漏的一个坑
 categories:
 - golang
 tags:
